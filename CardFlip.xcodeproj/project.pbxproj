@@ -13,6 +13,9 @@
 		5878313627AECE3E008A36B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5878313427AECE3E008A36B2 /* Main.storyboard */; };
 		5878313827AECE3E008A36B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5878313727AECE3E008A36B2 /* Assets.xcassets */; };
 		5878313B27AECE3E008A36B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5878313927AECE3E008A36B2 /* LaunchScreen.storyboard */; };
+		589AAB2627B912FD00B2272C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AAB2527B912FD00B2272C /* Card.swift */; };
+		589AAB2827B9130B00B2272C /* CardFlipGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AAB2727B9130B00B2272C /* CardFlipGame.swift */; };
+		589AAB2B27B913EF00B2272C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AAB2A27B913EF00B2272C /* UIButtonExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		5878313727AECE3E008A36B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5878313A27AECE3E008A36B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5878313C27AECE3E008A36B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		589AAB2527B912FD00B2272C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		589AAB2727B9130B00B2272C /* CardFlipGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFlipGame.swift; sourceTree = "<group>"; };
+		589AAB2A27B913EF00B2272C /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,8 @@
 		5878312D27AECE3E008A36B2 /* CardFlip */ = {
 			isa = PBXGroup;
 			children = (
+				589AAB2927B913AC00B2272C /* Extensions */,
+				589AAB2427B912EF00B2272C /* Models */,
 				589AAB1E27AED2F600B2272C /* Storyboards */,
 				589AAB1D27AED2CF00B2272C /* ViewControllers */,
 				589AAB1C27AED2B100B2272C /* Delegates */,
@@ -97,6 +105,23 @@
 				5878313C27AECE3E008A36B2 /* Info.plist */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		589AAB2427B912EF00B2272C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				589AAB2527B912FD00B2272C /* Card.swift */,
+				589AAB2727B9130B00B2272C /* CardFlipGame.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		589AAB2927B913AC00B2272C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				589AAB2A27B913EF00B2272C /* UIButtonExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,8 +196,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5878313327AECE3E008A36B2 /* ViewController.swift in Sources */,
+				589AAB2827B9130B00B2272C /* CardFlipGame.swift in Sources */,
 				5878312F27AECE3E008A36B2 /* AppDelegate.swift in Sources */,
 				5878313127AECE3E008A36B2 /* SceneDelegate.swift in Sources */,
+				589AAB2627B912FD00B2272C /* Card.swift in Sources */,
+				589AAB2B27B913EF00B2272C /* UIButtonExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
