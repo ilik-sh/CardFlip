@@ -15,7 +15,7 @@
 		5878313B27AECE3E008A36B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5878313927AECE3E008A36B2 /* LaunchScreen.storyboard */; };
 		589AAB2627B912FD00B2272C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AAB2527B912FD00B2272C /* Card.swift */; };
 		589AAB2827B9130B00B2272C /* CardFlipGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AAB2727B9130B00B2272C /* CardFlipGame.swift */; };
-		589AAB2B27B913EF00B2272C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AAB2A27B913EF00B2272C /* UIButtonExtension.swift */; };
+		589AAB3227BA7D3200B2272C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589AAB3127BA7D3200B2272C /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		5878313C27AECE3E008A36B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		589AAB2527B912FD00B2272C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		589AAB2727B9130B00B2272C /* CardFlipGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFlipGame.swift; sourceTree = "<group>"; };
-		589AAB2A27B913EF00B2272C /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		589AAB3127BA7D3200B2272C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,7 @@
 		5878312D27AECE3E008A36B2 /* CardFlip */ = {
 			isa = PBXGroup;
 			children = (
-				589AAB2927B913AC00B2272C /* Extensions */,
+				589AAB2E27B9196A00B2272C /* Views */,
 				589AAB2427B912EF00B2272C /* Models */,
 				589AAB1E27AED2F600B2272C /* Storyboards */,
 				589AAB1D27AED2CF00B2272C /* ViewControllers */,
@@ -116,12 +116,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		589AAB2927B913AC00B2272C /* Extensions */ = {
+		589AAB2E27B9196A00B2272C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				589AAB2A27B913EF00B2272C /* UIButtonExtension.swift */,
+				589AAB3127BA7D3200B2272C /* CollectionViewCell.swift */,
 			);
-			path = Extensions;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,10 +197,10 @@
 			files = (
 				5878313327AECE3E008A36B2 /* ViewController.swift in Sources */,
 				589AAB2827B9130B00B2272C /* CardFlipGame.swift in Sources */,
+				589AAB3227BA7D3200B2272C /* CollectionViewCell.swift in Sources */,
 				5878312F27AECE3E008A36B2 /* AppDelegate.swift in Sources */,
 				5878313127AECE3E008A36B2 /* SceneDelegate.swift in Sources */,
 				589AAB2627B912FD00B2272C /* Card.swift in Sources */,
-				589AAB2B27B913EF00B2272C /* UIButtonExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

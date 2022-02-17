@@ -8,68 +8,53 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     // - UI
-    
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet var anButtonCollection: [UIButton]!
     
     // - Data
+    let game = CardFlipGame()
+    var cards = [Card]()
     
-    var score = 0
-    var flipped: UIButton?
-    let symbolCollection = ["💛", "❤️", "💚"]
-    
-    @IBAction func onClick(_ sender: UIButton) {
-        if flipped == nil {
-            sender.flipOver()
-            flipped = sender
-        }
-        else if flipped != nil {
-            sender.titleLabel?.layer.opacity = 1
-            sender.flipOver()
-            if sender.currentTitle == flipped?.currentTitle {
-                flipped?.isEnabled = false
-                sender.isEnabled = false
-                score += 1
-                scoreLabel.text = "Score: \(score)"
-                flipped = nil
-            }
-            else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [self] in
-                    self.flipped?.flipOver()
-                    self.flipped?.titleLabel?.layer.opacity = 0
-                    sender.flipOver()
-                    sender.titleLabel?.layer.opacity = 0
-                    self.flipped = nil
-                })
-                
-            }
-        }
-//        if sender.currentTitle != nil && sender.currentTitle != "" && isFlipped{
-//            sender.setTitle("", for: .normal)
-//            UIView.transition(with: sender, duration: 1, options: .transitionFlipFromRight, animations: nil, completion: nil)
-//        }
-//        else {
-//            scoreLabel.text = "Love you, Katie!"
-//            sender.setTitle("❤️", for: .normal)
-//            UIView.transition(with: sender, duration: 1, options: .transitionFlipFromRight, animations: nil, completion: nil)
-//            isFlipped = true
-//        }
-    }
-    
+    // - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        initField()
-    }
-
-    func initField() {
-        for button in anButtonCollection {
-            button.setTitle(symbolCollection.randomElement(), for: .normal)
-            button.titleLabel?.layer.opacity = 0
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        for _ in 1...12 {
+            let card = Card()
+            self.cards.append(card)
         }
+        game.cards = self.cards
+        self.setupGame()
     }
-
+    
+    func setupGame() {
+        game.startGame()
+        collectionView.reloadData()
+    }
 }
 
+    // - CollectionViewDataSource
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseCell", for: indexPath) as! CollectionViewCell
+        cell.card = game.cardAtIndex(indexPath.item)
+        cell.frontView.layer.cornerRadius = 7
+        cell.backView.layer.cornerRadius = 7
+        return cell
+    }
+}
+
+    // - CollectionViewDelegate
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
+        cell.flip()
+    }
+}
 
