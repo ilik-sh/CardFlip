@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum errors: Error {
+    case invalidLink
+    case dataError
+}
+
 class ViewController: UIViewController {
     // - UI
     @IBOutlet weak var collectionView: UICollectionView!
@@ -17,13 +22,14 @@ class ViewController: UIViewController {
     var cards = [Card]()
     
     // - Lifecycle
-    override func viewDidLoad() {
+    override func viewDidLoad()  {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
         for _ in 1...12 {
-            let card = Card()
-            self.cards.append(card)
+            setImage(completionHandler: { card in
+                self.cards.append(card)
+            })
         }
         game.cards = self.cards
         self.setupGame()
@@ -32,6 +38,19 @@ class ViewController: UIViewController {
     func setupGame() {
         game.startGame()
         collectionView.reloadData()
+    }
+    
+    func setImage(completionHandler: @escaping (Card) -> ())  {
+        guard let url = URL(string: "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg") else { return }
+        let card = Card()
+        let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, _, _) in
+            guard let data = data else {  return print("wds") }
+            guard let img = UIImage(data: data) else { return }
+            print("Rdy")
+            card.img = img
+        })
+        task.resume()
+        completionHandler(card)
     }
 }
 
