@@ -18,7 +18,7 @@ class Card {
     
     
     init() {
-        print("1")
+//        self.img = img
     }
     
 }

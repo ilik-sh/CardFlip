@@ -7,11 +7,6 @@
 
 import UIKit
 
-enum errors: Error {
-    case invalidLink
-    case dataError
-}
-
 class ViewController: UIViewController {
     // - UI
     @IBOutlet weak var collectionView: UICollectionView!
@@ -20,17 +15,17 @@ class ViewController: UIViewController {
     // - Data
     let game = CardFlipGame()
     var cards = [Card]()
+    let service = DownloadService(.default)
     
     // - Lifecycle
     override func viewDidLoad()  {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        for _ in 1...12 {
-            setImage(completionHandler: { card in
+            service.download(completion: { (card) in
+                guard let card = card else { return }
                 self.cards.append(card)
             })
-        }
         game.cards = self.cards
         self.setupGame()
     }
@@ -39,25 +34,12 @@ class ViewController: UIViewController {
         game.startGame()
         collectionView.reloadData()
     }
-    
-    func setImage(completionHandler: @escaping (Card) -> ())  {
-        guard let url = URL(string: "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg") else { return }
-        let card = Card()
-        let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, _, _) in
-            guard let data = data else {  return print("wds") }
-            guard let img = UIImage(data: data) else { return }
-            print("Rdy")
-            card.img = img
-        })
-        task.resume()
-        completionHandler(card)
-    }
 }
 
     // - CollectionViewDataSource
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return self.cards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
