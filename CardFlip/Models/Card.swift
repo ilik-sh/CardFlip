@@ -17,8 +17,8 @@ class Card {
     var img: UIImage?
     
     
-    init() {
-//        self.img = img
+    init(with img: UIImage) {
+        self.img = img
     }
     
 }

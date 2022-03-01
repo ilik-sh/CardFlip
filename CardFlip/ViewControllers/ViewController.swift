@@ -22,11 +22,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-            service.download(completion: { (card) in
-                guard let card = card else { return }
-                self.cards.append(card)
-            })
-        game.cards = self.cards
+        service.download() { (card) in
+            self.cards.append(card!)
+        }
+        game.cards = cards
         self.setupGame()
     }
     
@@ -39,7 +38,7 @@ class ViewController: UIViewController {
     // - CollectionViewDataSource
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.cards.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

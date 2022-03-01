@@ -19,24 +19,15 @@ final class DownloadService {
     }
     
     func download(completion: @escaping (Card?) -> ()) {
-//        dataTask?.cancel()
-        
-        dataTask = self.urlSession.dataTask(with: url, completionHandler: {[weak self] (data, response, error) in
-            guard error != nil else { return }
-
+//      dataTask?.cancel()
+        dataTask = urlSession.dataTask(with: url, completionHandler: { (data, response, error) in
             if let data = data{
-                DispatchQueue.main.async {
-                    let card = Card()
-                    self?.card = card
-                }
+                guard let img = UIImage(data: data) else { return }
+                let card = Card(with: img)
+                completion(card)
             }
-            
-            DispatchQueue.main.async {
-                completion(self?.card)
-            }
-            
         })
         dataTask?.resume()
-        RunLoop.current.run()
+        sleep(1)
     }
 }
