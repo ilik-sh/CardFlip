@@ -7,20 +7,14 @@
 
 import UIKit
 
-enum BadResponce: Error{
-    case invalidFormat
-}
-
 class Card {
     let id = NSUUID().uuidString
     var isFlipped = false
     var img: UIImage?
     
-    
     init(with img: UIImage) {
         self.img = img
     }
-    
 }
 
 

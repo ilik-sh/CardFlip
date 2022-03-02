@@ -20,6 +20,7 @@ class CollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // - Methods
     func flip() {
         if !frontView.isHidden {
             UIView.transition(from: frontView,
