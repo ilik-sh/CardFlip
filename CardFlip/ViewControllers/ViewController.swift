@@ -22,14 +22,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        service.download() { (card) in
-            self.cards.append(card!)
-        }
-        game.cards = cards
+        game.delegate = self
         self.setupGame()
     }
     
     func setupGame() {
+        service.createCardArray(completion: { (cards) in
+            self.cards = cards!
+        })
+        game.cards = cards
         game.startGame()
         collectionView.reloadData()
     }
@@ -38,7 +39,7 @@ class ViewController: UIViewController {
     // - CollectionViewDataSource
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return cards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -54,7 +55,21 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-        cell.flip()
+        
+        if cell.isFlipped { return }
+//        cell.flip()
+        
+        game.didSelectCard(cell.card!)
+    }
+}
+
+extension ViewController: CardFlipGameDelegate {
+    func flipCards(_ cards: [Card]) {
+        for card in cards {
+            guard let index = game.indexForCard(card) else { return }
+            let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! CollectionViewCell
+            cell.flip()
+        }
     }
 }
 

@@ -19,10 +19,12 @@ class CollectionViewCell: UICollectionViewCell {
             self.frontView.image = card.img
         }
     }
+    var isFlipped = false
     
     // - Methods
     func flip() {
         if !frontView.isHidden {
+            isFlipped = false
             UIView.transition(from: frontView,
                               to: backView,
                               duration: 0.3,
@@ -30,6 +32,7 @@ class CollectionViewCell: UICollectionViewCell {
                               completion: nil)
         }
         else {
+            isFlipped = true
             UIView.transition(from: backView,
                               to: frontView,
                               duration: 0.3,

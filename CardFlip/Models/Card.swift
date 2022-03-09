@@ -8,12 +8,22 @@
 import UIKit
 
 class Card {
-    let id = NSUUID().uuidString
-    var isFlipped = false
+    var id = NSUUID().uuidString
     var img: UIImage?
     
-    init(with img: UIImage) {
+    init(with img: UIImage?) {
         self.img = img
+    }
+    
+    func copy() -> Card{
+        guard let img = self.img else { return Card(with: nil)}
+        let copy = Card(with: img)
+        copy.id = self.id
+        return copy
+    }
+    
+    func equal(_ card: Card) -> Bool {
+        return card.id == self.id
     }
 }
 
