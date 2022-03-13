@@ -44,6 +44,7 @@ class CardFlipGame {
         else {
             if cardsShown.last!.equal(card) {
                 cardsShown.append(card)
+                self.delegate?.updateScore()
                 if cards.count == cardsShown.count {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         self.delegate?.flipCards(self.cardsShown)

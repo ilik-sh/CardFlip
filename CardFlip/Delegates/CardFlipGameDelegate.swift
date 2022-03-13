@@ -10,5 +10,5 @@ import Foundation
 protocol CardFlipGameDelegate {
     func flipCards(_ cards: [Card])
     func setupGame()
-
+    func updateScore() 
 }

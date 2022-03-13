@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     
     // - Data
+    var score = 0
     let game = CardFlipGame()
     var cards = [Card]()
     let service = DownloadService(.default)
@@ -24,15 +25,6 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
         game.delegate = self
         self.setupGame()
-    }
-    
-    func setupGame() {
-        service.createCardArray(completion: { (cards) in
-            self.cards = cards!
-        })
-        game.cards = cards
-        game.startGame()
-        collectionView.reloadData()
     }
 }
 
@@ -70,6 +62,20 @@ extension ViewController: CardFlipGameDelegate {
             let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! CollectionViewCell
             cell.flip()
         }
+    }
+    
+    func updateScore() {
+        score += 1
+        scoreLabel.text = "Score: \(score)"
+    }
+    
+    func setupGame() {
+        service.createCardArray(completion: { (cards) in
+            self.cards = cards!
+        })
+        game.cards = cards
+        game.startGame()
+        collectionView.reloadData()
     }
 }
 
