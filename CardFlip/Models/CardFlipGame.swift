@@ -16,11 +16,7 @@ class CardFlipGame {
     // - Methods
     func startGame() {
         cards.shuffle()
-    }
-    
-    func finishGame() {
-        cards.removeAll()
-        cardsShown.removeAll()
+        delegate?.setupGame()
     }
     
     func cardAtIndex(_ index: Int) -> Card? {
@@ -36,6 +32,7 @@ class CardFlipGame {
         return nil
     }
     
+    // TODO: make flips after the end
     func didSelectCard(_ card: Card) {
         self.delegate?.flipCards([card])
         if didSelectUnpaired() {
@@ -46,12 +43,13 @@ class CardFlipGame {
                 cardsShown.append(card)
                 self.delegate?.updateScore()
                 if cards.count == cardsShown.count {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         self.delegate?.flipCards(self.cardsShown)
-                        self.finishGame()
-                        self.delegate?.setupGame()
                     }
-                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        self.cardsShown.removeAll()
+                        self.startGame()
+                    }
                 }
             }
             else {

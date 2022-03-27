@@ -13,12 +13,13 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var backView: UIImageView!
     
     // - Data
-    var card: Card? = nil {
+    var card: Card? {
         didSet {
             guard let card = card else { return }
             self.frontView.image = card.img
         }
     }
+    
     var isFlipped = false
     
     // - Methods
