@@ -8,6 +8,7 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
+    
     // - UI
     @IBOutlet weak var frontView: UIImageView!
     @IBOutlet weak var backView: UIImageView!
@@ -21,6 +22,13 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     var isFlipped = false
+    
+    // - Lifecycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.frontView.layer.cornerRadius = 7
+        self.backView.layer.cornerRadius = 7
+    }
     
     // - Methods
     func flip() {

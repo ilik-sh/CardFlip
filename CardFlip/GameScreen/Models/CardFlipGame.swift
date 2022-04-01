@@ -7,32 +7,38 @@
 
 import UIKit
 
-class CardFlipGame {
+class CardFlipGame{
     // - Data
-    var cards: [Card] = [Card]()
-    private var cardsShown: [Card] = [Card]()
-    var delegate: CardFlipGameDelegate?
-     
+    var cards = [Card]()
+    weak var delegate: CardFlipGameDelegate?
+    private var score = 0
+    private var cardsShown = [Card]()
+    
     // - Methods
-    func startGame() {
+    private func startGame() {
         cards.shuffle()
-        delegate?.setupGame()
     }
     
-    func cardAtIndex(_ index: Int) -> Card? {
-        return cards[index]
+    private func didSelectUnpaired() -> Bool {
+        return cardsShown.count % 2 == 0
     }
     
     func indexForCard(_ card: Card) -> Int? {
-        for i in 0..<cards.count {
-            if cards[i] === card{
-                return i
-            }
+       for i in 0..<cards.count {
+           if cards[i] === card{
+               return i
+           }
+       }
+       return nil
+   }
+    
+    func cardAtIndex(_ index: Int) -> Card? {
+        if !cards.isEmpty{
+            return cards[index]
         }
         return nil
     }
     
-    // TODO: make flips after the end
     func didSelectCard(_ card: Card) {
         self.delegate?.flipCards([card])
         if didSelectUnpaired() {
@@ -41,7 +47,8 @@ class CardFlipGame {
         else {
             if cardsShown.last!.equal(card) {
                 cardsShown.append(card)
-                self.delegate?.updateScore()
+                score += 1
+                self.delegate?.updateScore(score)
                 if cards.count == cardsShown.count {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         self.delegate?.flipCards(self.cardsShown)
@@ -53,15 +60,10 @@ class CardFlipGame {
                 }
             }
             else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     self.delegate?.flipCards([card, self.cardsShown.removeLast()])
                 }
             }
         }
     }
-    
-    func didSelectUnpaired() -> Bool {
-        return cardsShown.count % 2 == 0
-    }
-    
 }

@@ -7,8 +7,7 @@
 
 import Foundation
 
-protocol CardFlipGameDelegate {
+protocol CardFlipGameDelegate: AnyObject {
     func flipCards(_ cards: [Card])
-    func setupGame()
-    func updateScore() 
+    func updateScore( _ score: Int)
 }

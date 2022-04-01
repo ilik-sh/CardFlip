@@ -11,13 +11,13 @@ class Card {
     var id = NSUUID().uuidString
     var img: UIImage?
     
-    init(with img: UIImage?) {
+    init(_ img: UIImage?) {
         self.img = img
     }
     
     func copy() -> Card{
-        guard let img = self.img else { return Card(with: nil)}
-        let copy = Card(with: img)
+        guard let img = self.img else { return Card(nil)}
+        let copy = Card(img)
         copy.id = self.id
         return copy
     }

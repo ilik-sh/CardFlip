@@ -7,19 +7,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class GameScreenViewController: UIViewController {
+    
     // - UI
-    @IBAction func pressedPlayButton(_ sender: UIButton) {
-        game.startGame()
-        collectionView.reloadData()
-        collectionView.isHidden = false
-        sender.isHidden = true
-    }
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scoreLabel: UILabel!
     
     // - Data
-    var score = 0
     let game = CardFlipGame()
     let service = DownloadService(.default)
     let urls = ["https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg",
@@ -30,15 +24,18 @@ class ViewController: UIViewController {
     // - Lifecycle
     override func viewDidLoad()  {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        game.delegate = self
+        configure()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setImages()
     }
 }
 
-    // - CollectionViewDataSource
-extension ViewController: UICollectionViewDataSource {
+    //  MARK: -CollectionViewDataSource
+extension GameScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return game.cards.count
     }
@@ -46,24 +43,22 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell( withReuseIdentifier: "reuseCell", for: indexPath) as! CollectionViewCell
         cell.card = game.cardAtIndex(indexPath.item)
-        cell.frontView.layer.cornerRadius = 7
-        cell.backView.layer.cornerRadius = 7
         return cell
     }
 }
 
-// -func  Col;lectionViewDelegate
-extension ViewController: UICollectionViewDelegate {
+    //  MARK: -CollectionViewDelegate
+extension GameScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-        
         if cell.isFlipped { return }
-        
+    
         game.didSelectCard(cell.card!)
     }
 }
 
-extension ViewController: CardFlipGameDelegate {
+    // MARK: -CardFlipGameDelegate
+extension GameScreenViewController: CardFlipGameDelegate {
     func flipCards(_ cards: [Card]) {
         for card in cards {
             guard let index = game.indexForCard(card) else { return }
@@ -72,8 +67,7 @@ extension ViewController: CardFlipGameDelegate {
         }
     }
     
-    func updateScore() {
-        score += 1
+    func updateScore(_ score: Int) {
         scoreLabel.text = "Score: \(score)"
     }
     
@@ -82,19 +76,35 @@ extension ViewController: CardFlipGameDelegate {
             service.download(urlString: url, completion: { [weak self] result in
                 switch result {
                 case .success(let img):
-                    let card = Card(with: img)
+                    let card = Card(img)
                     self?.game.cards.append(card)
                     self?.game.cards.append(card.copy())
+                    DispatchQueue.main.async {
+                        self?.collectionView.reloadData()
+                    }
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
             })
         }
     }
-    
-    func setupGame() {
-        collectionView.reloadData()
+}
+
+    // MARK: -Configure
+extension GameScreenViewController {
+    private func configure() {
+        configureCollectionView()
+        configureDelegates()
     }
-        
+    
+    private func configureCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+    }
+    
+    private func configureDelegates() {
+        game.delegate = self
+    }
+    
 }
 
