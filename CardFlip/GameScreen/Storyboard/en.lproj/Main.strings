@@ -1,0 +1,15 @@
+
+/* Class = "UIButton"; configuration.title = "Go Back"; ObjectID = "9jJ-6O-8cj"; */
+"9jJ-6O-8cj.configuration.title" = "Go Back";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "9jJ-6O-8cj"; */
+"9jJ-6O-8cj.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Score: "; ObjectID = "L5b-Tk-bqu"; */
+"L5b-Tk-bqu.text" = "Score: ";
+
+/* Class = "UIButton"; configuration.title = "Proceed to game"; ObjectID = "yPZ-Ay-BEo"; */
+"yPZ-Ay-BEo.configuration.title" = "Proceed to game";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "yPZ-Ay-BEo"; */
+"yPZ-Ay-BEo.normalTitle" = "Button";
