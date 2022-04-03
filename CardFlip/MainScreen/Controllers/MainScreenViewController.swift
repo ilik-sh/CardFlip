@@ -9,7 +9,24 @@ import UIKit
 
 class MainScreenViewController: UIViewController {
     
+    
+    @IBAction func PlayButtonTouchesStarted(_ sender: UIView) {
+        sender.pressedDown()
+    }
+    
+    @IBAction func PlayButtonTouchesEnded(_ sender: UIView) {
+        sender.pressedUp({ [weak self] _ in
+            let vc = UIStoryboard(name: "GameScreenStoryboard", bundle: nil).instantiateViewController(withIdentifier: "GameScreen") as! GameScreenViewController
+            self?.navigationController?.pushViewController(vc, animated: true)
+        })
+    }
+    
+        
+    
+    
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
     }
 }

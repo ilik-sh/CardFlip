@@ -17,6 +17,7 @@ class CardFlipGame{
     // - Methods
     private func startGame() {
         cards.shuffle()
+        delegate?.resetData()
     }
     
     private func didSelectUnpaired() -> Bool {
