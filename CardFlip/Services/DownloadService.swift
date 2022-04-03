@@ -9,8 +9,12 @@ import UIKit
 
 final class DownloadService {
     // - Data
-    let urlSession: URLSession
-    var task: URLSessionDataTask?
+    private let urlSession: URLSession
+    private var task: URLSessionDataTask?
+    
+    static var shared = DownloadService(.default)
+    
+    var cache  = NSCache<NSString, UIImage>()
     
     // - Initializer
     init(_ configuration: URLSessionConfiguration) {
@@ -19,6 +23,11 @@ final class DownloadService {
     
     // - Methods
     func download(urlString: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
+        if let cachedImage = cache.object(forKey: urlString as NSString) {
+            print("From cache")
+            completion(.success(cachedImage))
+            return 
+        }
         guard let url = URL(string: urlString) else {
             return completion(.failure(DownloadServiceError.invalidUrl))
         }
@@ -34,7 +43,10 @@ final class DownloadService {
             guard let img = UIImage(data: data)?.resize(size: CGSize(width: 115, height: 140)) else {
                 return completion(.failure(DownloadServiceError.invalidConversion))
             }
-                return completion(.success(img))
+            self.cache.setObject(img, forKey: urlString as NSString)
+            print("From net")
+            return completion(.success(img))
+            
         })
         task?.resume()
     }

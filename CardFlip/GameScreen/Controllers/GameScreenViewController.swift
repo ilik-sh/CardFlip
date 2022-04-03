@@ -9,13 +9,23 @@ import UIKit
 
 class GameScreenViewController: UIViewController {
     
+    
+    @IBAction func GoBackButtonTouchesBegin(_ sender: UIView) {
+        sender.pressedDown()
+    }
+    @IBAction func GoBackButtonTouchesEnded(_ sender: UIView) {
+        sender.pressedUp({ [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        })
+    }
+    
+    
     // - UI
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     // - Data
     let game = CardFlipGame()
-    let service = DownloadService(.default)
     let urls = ["https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg",
                 "https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&w=1000&q=80",
                 "https://cdn.britannica.com/91/181391-050-1DA18304/cat-toes-paw-number-paws-tiger-tabby.jpg?q=60"
@@ -25,13 +35,9 @@ class GameScreenViewController: UIViewController {
     override func viewDidLoad()  {
         super.viewDidLoad()
         configure()
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         setImages()
     }
+    
 }
 
     //  MARK: -CollectionViewDataSource
@@ -73,7 +79,7 @@ extension GameScreenViewController: CardFlipGameDelegate {
     
     func setImages() {
         for url in urls {
-            service.download(urlString: url, completion: { [weak self] result in
+            DownloadService.shared.download(urlString: url, completion: { [weak self] result in
                 switch result {
                 case .success(let img):
                     let card = Card(img)
@@ -87,6 +93,10 @@ extension GameScreenViewController: CardFlipGameDelegate {
                 }
             })
         }
+    }
+    
+    func resetData() {
+        self.collectionView.reloadData()
     }
 }
 
