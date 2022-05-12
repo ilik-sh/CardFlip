@@ -9,3 +9,4 @@ import Foundation
 
 
 let theme = "theme"
+let highestScore = "score"

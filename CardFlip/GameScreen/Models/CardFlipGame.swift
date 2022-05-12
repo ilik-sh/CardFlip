@@ -10,18 +10,51 @@ import UIKit
 class CardFlipGame{
     // - Data
     var cards = [Card]()
+    var cardShown: Card? = nil
     weak var delegate: CardFlipGameDelegate?
-    private var score = 0
-    private var cardsShown = [Card]()
-    
-    // - Methods
-    private func startGame() {
-        cards.shuffle()
-        delegate?.resetData()
+    private let defaults = UserDefaults.standard
+    private var winGame = false
+    private var score = 0 {
+        didSet {
+            let oldHighestScore = defaults.integer(forKey: highestScore)
+            if score > oldHighestScore {
+                defaults.set(score, forKey: highestScore)
+            }
+        }
     }
     
-    private func didSelectUnpaired() -> Bool {
-        return cardsShown.count % 2 == 0
+    // - Methods
+    func startNewGame() {
+        self.delegate?.flipCards(cards)
+        cards.forEach({ $0.isFlipped = !$0.isFlipped})
+        cards.shuffle()
+        self.delegate?.resetData()
+
+    }
+    
+    func didSelectCard(_ card: Card) {
+        if card.isFlipped == true { return }
+        delegate?.flipCards([card])
+        card.isFlipped = true
+        
+        if cardShown == nil {
+            cardShown = card
+        }
+        
+        else {
+            if card.equals(cardShown!) {
+                updateScore()
+                cardShown = nil
+                if allCardsAreFlipped() {
+                    startNewGame()
+                }
+            }
+            else {
+                flip([card, cardShown!])
+                cardShown = nil
+            }
+        }
+        
     }
     
     func indexForCard(_ card: Card) -> Int? {
@@ -34,37 +67,26 @@ class CardFlipGame{
    }
     
     func cardAtIndex(_ index: Int) -> Card? {
-        if !cards.isEmpty{
+        if index < cards.count{
             return cards[index]
         }
         return nil
     }
     
-    func didSelectCard(_ card: Card) {
-        self.delegate?.flipCards([card])
-        if didSelectUnpaired() {
-            cardsShown.append(card)
-        }
-        else {
-            if cardsShown.last!.equal(card) {
-                cardsShown.append(card)
-                score += 1
-                self.delegate?.updateScore(score)
-                if cards.count == cardsShown.count {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        self.delegate?.flipCards(self.cardsShown)
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                        self.cardsShown.removeAll()
-                        self.startGame()
-                    }
-                }
-            }
-            else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    self.delegate?.flipCards([card, self.cardsShown.removeLast()])
-                }
-            }
-        }
+    private func flip(_ cards: [Card]) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+            self.delegate?.flipCards(cards)
+            cards.forEach({ $0.isFlipped = !$0.isFlipped})
+        })
     }
+    
+    private func allCardsAreFlipped() -> Bool {
+        return cards.allSatisfy({ $0.isFlipped })
+    }
+    
+    private func updateScore() {
+        score += 1
+        delegate?.updateScore(score)
+    }
+    
 }

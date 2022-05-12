@@ -7,8 +7,6 @@
 
 import UIKit
 
-let theme = "theme"
-
 class ThemeScreenViewController: UIViewController {
     // - UI
     @IBOutlet weak var tableView: UITableView!
@@ -42,15 +40,8 @@ class ThemeScreenViewController: UIViewController {
 extension ThemeScreenViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! ThemeTableViewCell
-        if cell.isSelected {
-            return
-        }
-        else {
-            cell.isSelected = true
-            let defaults = UserDefaults.standard
-            defaults.set(cell.themeLabel.text, forKey: theme)
-        }
-        
+        let defaults = UserDefaults.standard
+        defaults.setValue(cell.themeLabel.text, forKey: theme)
     }
 }
 
@@ -61,7 +52,11 @@ extension ThemeScreenViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopTableViewCell", for: indexPath) as! ThemeTableViewCell
+        let defaults = UserDefaults.standard
         cell.themeLabel.text = themes[indexPath.row]
+        if cell.themeLabel.text == defaults.string(forKey: theme) {
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        }
         cell.selectionStyle = .none
         return cell
     }

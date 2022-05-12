@@ -21,7 +21,6 @@ class CollectionViewCell: UICollectionViewCell {
         }
     }
     
-    var isFlipped = false
     
     // - Lifecycle
     override func layoutSubviews() {
@@ -33,7 +32,6 @@ class CollectionViewCell: UICollectionViewCell {
     // - Methods
     func flip() {
         if !frontView.isHidden {
-            isFlipped = false
             UIView.transition(from: frontView,
                               to: backView,
                               duration: 0.3,
@@ -41,7 +39,6 @@ class CollectionViewCell: UICollectionViewCell {
                               completion: nil)
         }
         else {
-            isFlipped = true
             UIView.transition(from: backView,
                               to: frontView,
                               duration: 0.3,

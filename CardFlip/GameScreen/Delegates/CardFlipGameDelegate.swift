@@ -5,8 +5,6 @@
 //  Created by Ilya on 9.03.22.
 //
 
-import Foundation
-
 protocol CardFlipGameDelegate: AnyObject {
     func flipCards(_ cards: [Card])
     func updateScore( _ score: Int)

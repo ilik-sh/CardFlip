@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5802A46D281987A20016D8F8 /* ThemeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5802A46C281987A20016D8F8 /* ThemeScreenViewController.swift */; };
+		5802A46F2819A8AE0016D8F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5802A46E2819A8AE0016D8F8 /* Constants.swift */; };
+		5802A475282AC4F40016D8F8 /* CatTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5802A474282AC4F40016D8F8 /* CatTheme.swift */; };
+		5802A477282AC4FE0016D8F8 /* DogTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5802A476282AC4FE0016D8F8 /* DogTheme.swift */; };
+		5802A479282AC5110016D8F8 /* LogoTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5802A478282AC5110016D8F8 /* LogoTheme.swift */; };
+		5802A47B282AC56A0016D8F8 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5802A47A282AC56A0016D8F8 /* ThemeProtocol.swift */; };
+		5802A47D282AC8EE0016D8F8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5802A47C282AC8EE0016D8F8 /* Theme.swift */; };
+		580E1810280AE7E600E84D04 /* ThemeScreenStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 580E180F280AE7E600E84D04 /* ThemeScreenStoryboard.storyboard */; };
 		5878312F27AECE3E008A36B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5878312E27AECE3E008A36B2 /* AppDelegate.swift */; };
 		5878313127AECE3E008A36B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5878313027AECE3E008A36B2 /* SceneDelegate.swift */; };
 		5878313327AECE3E008A36B2 /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5878313227AECE3E008A36B2 /* GameScreenViewController.swift */; };
@@ -22,9 +30,18 @@
 		58CDDB5627F88E1D007E4672 /* MainScreenStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58CDDB5527F88E1D007E4672 /* MainScreenStoryboard.storyboard */; };
 		58DE645227F6191A00D173D1 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DE645127F6191A00D173D1 /* MainScreenViewController.swift */; };
 		58DE645527F62C2C00D173D1 /* DownloadServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DE645427F62C2B00D173D1 /* DownloadServiceErrors.swift */; };
+		58FF18322818477D003D7126 /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FF18302818477D003D7126 /* ThemeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5802A46C281987A20016D8F8 /* ThemeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeScreenViewController.swift; sourceTree = "<group>"; };
+		5802A46E2819A8AE0016D8F8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5802A474282AC4F40016D8F8 /* CatTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatTheme.swift; sourceTree = "<group>"; };
+		5802A476282AC4FE0016D8F8 /* DogTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogTheme.swift; sourceTree = "<group>"; };
+		5802A478282AC5110016D8F8 /* LogoTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoTheme.swift; sourceTree = "<group>"; };
+		5802A47A282AC56A0016D8F8 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
+		5802A47C282AC8EE0016D8F8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		580E180F280AE7E600E84D04 /* ThemeScreenStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThemeScreenStoryboard.storyboard; sourceTree = "<group>"; };
 		5878312B27AECE3E008A36B2 /* CardFlip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardFlip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5878312E27AECE3E008A36B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5878313027AECE3E008A36B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +59,7 @@
 		58CDDB5527F88E1D007E4672 /* MainScreenStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainScreenStoryboard.storyboard; sourceTree = "<group>"; };
 		58DE645127F6191A00D173D1 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		58DE645427F62C2B00D173D1 /* DownloadServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadServiceErrors.swift; sourceTree = "<group>"; };
+		58FF18302818477D003D7126 /* ThemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +73,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5802A4702819A8C80016D8F8 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				5802A46E2819A8AE0016D8F8 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		5802A473282AC4E30016D8F8 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				5802A474282AC4F40016D8F8 /* CatTheme.swift */,
+				5802A476282AC4FE0016D8F8 /* DogTheme.swift */,
+				5802A478282AC5110016D8F8 /* LogoTheme.swift */,
+				5802A47C282AC8EE0016D8F8 /* Theme.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		580E180C280ADB0700E84D04 /* ThemeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				580E1813280AE93500E84D04 /* Cells */,
+				580E180E280AE7CC00E84D04 /* Storyboards */,
+				580E180D280AE7C200E84D04 /* Controllers */,
+			);
+			path = ThemeScreen;
+			sourceTree = "<group>";
+		};
+		580E180D280AE7C200E84D04 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5802A46C281987A20016D8F8 /* ThemeScreenViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		580E180E280AE7CC00E84D04 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				580E180F280AE7E600E84D04 /* ThemeScreenStoryboard.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		580E1813280AE93500E84D04 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				58FF18302818477D003D7126 /* ThemeTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		5878312227AECE3E008A36B2 = {
 			isa = PBXGroup;
 			children = (
@@ -74,12 +145,15 @@
 		5878312D27AECE3E008A36B2 /* CardFlip */ = {
 			isa = PBXGroup;
 			children = (
-				589AAB2E27B9196A00B2272C /* GameScreen */,
 				58DE644F27F618E900D173D1 /* MainScreen */,
+				589AAB2E27B9196A00B2272C /* GameScreen */,
+				580E180C280ADB0700E84D04 /* ThemeScreen */,
 				58A2325A27C4EBC800830B19 /* Services */,
 				589AAB1C27AED2B100B2272C /* Delegates */,
+				5802A473282AC4E30016D8F8 /* Themes */,
 				58A2325B27D25A0300830B19 /* Extensions */,
 				58DE645327F62BE500D173D1 /* Errors */,
+				5802A4702819A8C80016D8F8 /* Constants */,
 				589AAB2027AED31600B2272C /* Assets */,
 			);
 			path = CardFlip;
@@ -202,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				58A5B28027D9336200B3BDFE /* CardFlipGameDelegate.swift */,
+				5802A47A282AC56A0016D8F8 /* ThemeProtocol.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -265,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58CDDB5627F88E1D007E4672 /* MainScreenStoryboard.storyboard in Resources */,
+				580E1810280AE7E600E84D04 /* ThemeScreenStoryboard.storyboard in Resources */,
 				5878313827AECE3E008A36B2 /* Assets.xcassets in Resources */,
 				5878313627AECE3E008A36B2 /* GameScreenStoryboard.storyboard in Resources */,
 			);
@@ -277,16 +353,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58FF18322818477D003D7126 /* ThemeTableViewCell.swift in Sources */,
 				58AFA65827F8A203006CB3AE /* UIView+SpringEffect.swift in Sources */,
 				5878313327AECE3E008A36B2 /* GameScreenViewController.swift in Sources */,
+				5802A47B282AC56A0016D8F8 /* ThemeProtocol.swift in Sources */,
 				58A2325927C4EB9300830B19 /* DownloadService.swift in Sources */,
 				58DE645527F62C2C00D173D1 /* DownloadServiceErrors.swift in Sources */,
+				5802A47D282AC8EE0016D8F8 /* Theme.swift in Sources */,
 				589AAB2827B9130B00B2272C /* CardFlipGame.swift in Sources */,
+				5802A479282AC5110016D8F8 /* LogoTheme.swift in Sources */,
+				5802A477282AC4FE0016D8F8 /* DogTheme.swift in Sources */,
 				589AAB3227BA7D3200B2272C /* CollectionViewCell.swift in Sources */,
+				5802A46F2819A8AE0016D8F8 /* Constants.swift in Sources */,
+				5802A475282AC4F40016D8F8 /* CatTheme.swift in Sources */,
 				58DE645227F6191A00D173D1 /* MainScreenViewController.swift in Sources */,
 				5878312F27AECE3E008A36B2 /* AppDelegate.swift in Sources */,
 				5878313127AECE3E008A36B2 /* SceneDelegate.swift in Sources */,
 				589AAB2627B912FD00B2272C /* Card.swift in Sources */,
+				5802A46D281987A20016D8F8 /* ThemeScreenViewController.swift in Sources */,
 				58A2325D27D25A1900830B19 /* UIImage+Resize.swift in Sources */,
 				58A5B28127D9336200B3BDFE /* CardFlipGameDelegate.swift in Sources */,
 			);

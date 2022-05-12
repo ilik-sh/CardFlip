@@ -8,8 +8,9 @@
 import UIKit
 
 class Card {
-    var id = NSUUID().uuidString
+    var id = NSUUID()
     var img: UIImage?
+    var isFlipped = false
     
     init(_ img: UIImage?) {
         self.img = img
@@ -22,7 +23,7 @@ class Card {
         return copy
     }
     
-    func equal(_ card: Card) -> Bool {
+    func equals(_ card: Card) -> Bool {
         return card.id == self.id
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIView {
+extension UIButton {
     
     func pressedDown() {
         UIView.animate(withDuration: 0.3,
@@ -27,7 +27,7 @@ extension UIView {
                        initialSpringVelocity: 3,
                        options: [.allowUserInteraction, .curveEaseIn],
                        animations: {
-            self.transform = CGAffineTransform.identity
+            self.transform = CGAffineTransform(scaleX: 1, y: 1)
         }, completion: work)
     }
 }

@@ -9,27 +9,29 @@ import UIKit
 
 class GameScreenViewController: UIViewController {
     
-    
-    @IBAction func GoBackButtonTouchesBegin(_ sender: UIView) {
+    // - Action
+    @IBAction func buttonTouchesStarted(_ sender: UIButton) {
         sender.pressedDown()
     }
-    @IBAction func GoBackButtonTouchesEnded(_ sender: UIView) {
+    
+    @IBAction func buttonTouchesEnded(_ sender: UIButton) {
         sender.pressedUp({ [weak self] _ in
             self?.navigationController?.popViewController(animated: true)
         })
     }
     
+    @IBAction func buttonTouchesEndedOutside(_ sender: UIButton) {
+        sender.pressedUp({ _ in })
+    }
     
     // - UI
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     // - Data
-    let game = CardFlipGame()
-    let urls = ["https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg",
-                "https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&w=1000&q=80",
-                "https://cdn.britannica.com/91/181391-050-1DA18304/cat-toes-paw-number-paws-tiger-tabby.jpg?q=60"
-               ]
+    
+    var urls = [String]()
+    private var game = CardFlipGame()
     
     // - Lifecycle
     override func viewDidLoad()  {
@@ -43,7 +45,7 @@ class GameScreenViewController: UIViewController {
     //  MARK: -CollectionViewDataSource
 extension GameScreenViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return game.cards.count
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -57,7 +59,6 @@ extension GameScreenViewController: UICollectionViewDataSource {
 extension GameScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-        if cell.isFlipped { return }
     
         game.didSelectCard(cell.card!)
     }
@@ -65,19 +66,8 @@ extension GameScreenViewController: UICollectionViewDelegate {
 
     // MARK: -CardFlipGameDelegate
 extension GameScreenViewController: CardFlipGameDelegate {
-    func flipCards(_ cards: [Card]) {
-        for card in cards {
-            guard let index = game.indexForCard(card) else { return }
-            let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! CollectionViewCell
-            cell.flip()
-        }
-    }
-    
-    func updateScore(_ score: Int) {
-        scoreLabel.text = "Score: \(score)"
-    }
-    
     func setImages() {
+        let urls = Theme.current.imgUrlArray
         for url in urls {
             DownloadService.shared.download(urlString: url, completion: { [weak self] result in
                 switch result {
@@ -95,13 +85,27 @@ extension GameScreenViewController: CardFlipGameDelegate {
         }
     }
     
+    func flipCards(_ cards: [Card]) {
+        for card in cards {
+            guard let index = game.indexForCard(card) else { return }
+            let cell = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as! CollectionViewCell
+            cell.flip()
+        }
+    }
+    
+    func updateScore(_ score: Int) {
+        scoreLabel.text = "Score: \(score)"
+    }
+    
     func resetData() {
-        self.collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
     // MARK: -Configure
-extension GameScreenViewController {
+fileprivate extension GameScreenViewController {
     private func configure() {
         configureCollectionView()
         configureDelegates()

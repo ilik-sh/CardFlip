@@ -24,7 +24,6 @@ final class DownloadService {
     // - Methods
     func download(urlString: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
         if let cachedImage = cache.object(forKey: urlString as NSString) {
-            print("From cache")
             completion(.success(cachedImage))
             return 
         }
@@ -44,7 +43,6 @@ final class DownloadService {
                 return completion(.failure(DownloadServiceError.invalidConversion))
             }
             self.cache.setObject(img, forKey: urlString as NSString)
-            print("From net")
             return completion(.success(img))
             
         })
