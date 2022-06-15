@@ -54,7 +54,12 @@ extension ThemeScreenViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopTableViewCell", for: indexPath) as! ThemeTableViewCell
         let defaults = UserDefaults.standard
         cell.themeLabel.text = themes[indexPath.row]
-        if cell.themeLabel.text == defaults.string(forKey: theme) {
+        if defaults.string(forKey: theme) != nil {
+            if cell.themeLabel.text == defaults.string(forKey: theme) {
+                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            }
+        }
+        else if cell.themeLabel.text == "Cats" {
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
         }
         cell.selectionStyle = .none

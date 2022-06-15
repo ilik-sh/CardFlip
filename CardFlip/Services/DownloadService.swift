@@ -25,7 +25,7 @@ final class DownloadService {
     func download(urlString: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
         if let cachedImage = cache.object(forKey: urlString as NSString) {
             completion(.success(cachedImage))
-            return 
+            return
         }
         guard let url = URL(string: urlString) else {
             return completion(.failure(DownloadServiceError.invalidUrl))

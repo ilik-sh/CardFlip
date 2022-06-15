@@ -9,7 +9,11 @@ import UIKit
 
 class CardFlipGame{
     // - Data
-    var cards = [Card]()
+    var cards = [Card]() {
+        didSet {
+            delegate?.resetData()
+        }
+    }
     var cardShown: Card? = nil
     weak var delegate: CardFlipGameDelegate?
     private let defaults = UserDefaults.standard
@@ -25,8 +29,6 @@ class CardFlipGame{
     
     // - Methods
     func startNewGame() {
-        self.delegate?.flipCards(cards)
-        cards.forEach({ $0.isFlipped = !$0.isFlipped})
         cards.shuffle()
         self.delegate?.resetData()
 
@@ -46,7 +48,10 @@ class CardFlipGame{
                 updateScore()
                 cardShown = nil
                 if allCardsAreFlipped() {
-                    startNewGame()
+                    flip(cards)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        self.startNewGame()
+                    })
                 }
             }
             else {

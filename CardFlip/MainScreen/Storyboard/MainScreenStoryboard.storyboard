@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,7 +49,7 @@
                                         <connections>
                                             <action selector="buttonTouchesEndedOutside:" destination="Y6W-OH-hqX" eventType="touchUpOutside" id="ZlH-hR-mFf"/>
                                             <action selector="buttonTouchesStarted:" destination="Y6W-OH-hqX" eventType="touchDown" id="MrI-ad-jQ3"/>
-                                            <action selector="shopButtonTouchesEnded:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="z3H-9K-stU"/>
+                                            <action selector="themeButtonTouchesEnded:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="4mK-3M-vWr"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -72,12 +71,13 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highest Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hw2-AI-bzI">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="25"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Hw2-AI-bzI" firstAttribute="leading" secondItem="Oaw-mj-wff" secondAttribute="leading" id="2w3-h3-zcG"/>
                                             <constraint firstAttribute="bottom" secondItem="Hw2-AI-bzI" secondAttribute="bottom" id="6H8-Ov-9Jm"/>
@@ -90,12 +90,13 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8p-nx-pYT">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="25"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="a8p-nx-pYT" firstAttribute="leading" secondItem="ri0-mX-1q4" secondAttribute="leading" id="0kA-FW-hZ6"/>
                                             <constraint firstAttribute="trailing" secondItem="a8p-nx-pYT" secondAttribute="trailing" id="L3F-q7-srw"/>
@@ -126,9 +127,4 @@
             <point key="canvasLocation" x="13.043478260869566" y="58.928571428571423"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

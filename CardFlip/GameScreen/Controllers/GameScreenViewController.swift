@@ -29,7 +29,6 @@ class GameScreenViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     // - Data
-    
     var urls = [String]()
     private var game = CardFlipGame()
     
@@ -60,7 +59,8 @@ extension GameScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
     
-        game.didSelectCard(cell.card!)
+        guard let card = cell.card else { return }
+        game.didSelectCard(card)
     }
 }
 

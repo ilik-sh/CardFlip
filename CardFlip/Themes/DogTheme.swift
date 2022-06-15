@@ -8,9 +8,9 @@
 import UIKit
 
 struct DogTheme: ThemeProtocol {
-    var imgUrlArray = ["https://hips.hearstapps.com/ghk.h-cdn.co/assets/16/08/gettyimages-464163411.jpg",
-                       "https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg",
-                       "https://dogtime.com/assets/uploads/gallery/pembroke-welsh-corgi-dog-breed-pictures/prance-8.jpg"]
+    var imgUrlArray = ["https://18bm092ga6qz200o9h4epj06-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/DogInField.jpg",
+                       "https://www.desktopbackground.org/p/2013/07/10/605121_dog-small-pets-baby-animals-widescreen-high-resolution_1600x1200_h.jpg",
+                       "https://cdn.petpress.net/wp-content/uploads/2020/05/11234702/shar-pei-15-364x205.jpg.webp"]
     
     var backgroundColor = UIColor(ciColor: .white)
     

@@ -23,14 +23,19 @@ class MainScreenViewController: UIViewController {
     @IBAction func playButtonTouchesEnded(_ sender: UIButton) {
         sender.pressedUp({ [weak self] _ in
             let vc = UIStoryboard(name: "GameScreenStoryboard", bundle: nil).instantiateViewController(withIdentifier: "GameScreen") as! GameScreenViewController
-            self?.navigationController?.pushViewController(vc, animated: true)
+            if !(self?.navigationController?.topViewController is GameScreenViewController) {
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+            
         })
     }
     
-    @IBAction func shopButtonTouchesEnded(_ sender: UIButton) {
+    @IBAction func themeButtonTouchesEnded(_ sender: UIButton) {
         sender.pressedUp({ [weak self] _ in
             let vc = UIStoryboard(name: "ThemeScreenStoryboard", bundle: nil).instantiateViewController(withIdentifier: "ThemeScreen") as! ThemeScreenViewController
-            self?.navigationController?.pushViewController(vc, animated: true)
+            if !(self?.navigationController?.topViewController is ThemeScreenViewController) {
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
         })
     }
     

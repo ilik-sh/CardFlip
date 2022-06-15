@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -36,7 +35,7 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="efI-Eo-aeA">
                                 <rect key="frame" x="0.0" y="44" width="414" height="655"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShopTableViewCell" rowHeight="94" id="am6-Go-1jc" customClass="ThemeTableViewCell" customModule="CardFlip" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="94"/>
@@ -70,6 +69,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="0au-nE-b4e" secondAttribute="trailing" constant="20" id="srF-Vb-4Ss"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="themeLabel" destination="LdF-it-qMC" id="11j-3M-yM7"/>
                                             <outlet property="view" destination="0au-nE-b4e" id="L3U-44-DSQ"/>
@@ -79,7 +79,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="K4b-SI-B80" firstAttribute="top" secondItem="efI-Eo-aeA" secondAttribute="bottom" constant="33" id="4y8-Vg-OdQ"/>
                             <constraint firstItem="efI-Eo-aeA" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Fcw-Ax-v6g"/>
@@ -99,9 +99,4 @@
             <point key="canvasLocation" x="13.043478260869566" y="58.928571428571423"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
